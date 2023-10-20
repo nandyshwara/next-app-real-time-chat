@@ -3,12 +3,13 @@ import { LogOutButton } from "./authButtons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 interface SessionType {
-  user: {
+  user?: {
     name?: string | null | undefined;
     email?: string | null | undefined;
     image?: string | null | undefined;
   };
 }
+
 
 interface LeftPanelProps {
   session: SessionType | null;

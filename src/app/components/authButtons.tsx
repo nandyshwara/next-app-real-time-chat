@@ -26,12 +26,13 @@ interface LogOutButtonProps {
   }
   
   interface SessionType {
-    user: {
+    user?: {
       name?: string | null | undefined;
       email?: string | null | undefined;
       image?: string | null | undefined;
     };
   }
+  
   
 export function LogOutButton({className , session} : LogOutButtonProps ){
     const router = useRouter();
