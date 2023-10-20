@@ -15,30 +15,6 @@ interface LeftPanelProps {
 }
 
 export default function Header({ session }: LeftPanelProps) {
-  const [jeweleryData, setJeweleryData] = useState([]);
-  
-  const getAllUsers = async () => {
-    try {
-      const responseData = await axios.get("/api/users/getAllUsers");
-      console.log(responseData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getUserByEmail = async () => {
-    try {
-      const responseData = await axios.get("/api/users/getUserById",{ params: { email: 'nandyshwara.a@gmail.com'} });
-      
-      console.log("user by email" ,responseData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    // getAllUsers();
-    getUserByEmail();
-  }, []);
 
   return (
     <div className="bg-slate-500 rounded-br-md rounded-tr-md py-10 h-fit">
