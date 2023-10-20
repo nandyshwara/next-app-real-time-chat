@@ -13,7 +13,7 @@ export const authConfig: NextAuthOptions = {
     session: {
       strategy: "jwt",
     },
-    // adapter: PrismaAdapter(prisma),
+    
     providers: [
         GitHubProvider({
             clientId: process.env.GITHUB_ID as string,

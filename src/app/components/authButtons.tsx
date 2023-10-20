@@ -2,11 +2,17 @@
 
 import { signIn } from "next-auth/react"
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function GithubSignInButton(){
-    const handleClick = ()=>{
-        signIn("github")
-    }
+    const router = useRouter();
+
+  const handleClick = async () => {
+    const result = await signIn("github");
+
+  };
+    
+   
     return(
         <button className="bg-black text-white text-medium text-xl py-3 px-10 rounded-xl shadow-xl" onClick={handleClick}>
             Continue with Github
@@ -16,9 +22,23 @@ export function GithubSignInButton(){
 
 interface LogOutButtonProps {
     className?: string;
+    session : SessionType | null ;
   }
   
-export function LogOutButton({className} : LogOutButtonProps){
+  interface SessionType {
+    user: {
+      name?: string | null | undefined;
+      email?: string | null | undefined;
+      image?: string | null | undefined;
+    };
+  }
+  
+export function LogOutButton({className , session} : LogOutButtonProps ){
+    const router = useRouter();
+    if (!session) {
+      router.push("/");
+      return null;
+    }
     const handleLogout = ()=>{
         signOut()
     }

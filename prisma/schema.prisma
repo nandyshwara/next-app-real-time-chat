@@ -8,8 +8,8 @@ generator client {
 }
 
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-   name          String
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
   email         String?   @unique
   password      String?
   emailVerified DateTime? @map("email_verified")
@@ -21,17 +21,17 @@ model User {
 }
 
 model Account {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
   userId            String   @map("user_id")
   type              String?
   provider          String
   providerAccountId String   @map("provider_account_id")
   token_type        String?
-  refresh_token     String?  
-  access_token      String?  
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   scope             String?
-  id_token          String?  
+  id_token          String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -41,7 +41,7 @@ model Account {
 }
 
 model Session {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   userId       String?  @map("user_id")
   sessionToken String   @unique @map("session_token")
   accessToken  String?  @map("access_token")
@@ -51,4 +51,20 @@ model Session {
   updatedAt    DateTime @updatedAt
 
   @@map("sessions")
+}
+
+model ChatMessage {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  chatRoomId String
+  sender     String
+  message    String
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @updatedAt @map("updated_at")
+}
+
+model ChatRoom {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  members  String[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
 }
