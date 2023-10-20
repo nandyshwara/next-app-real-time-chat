@@ -1,4 +1,4 @@
-import { authConfig, loginIsRequiredServer } from "@/lib/auth";
+import { authConfig } from "@/lib/auth";
 import { GithubSignInButton, LogOutButton } from "./components/authButtons";
 import { getServerSession } from "next-auth";
 import Header from "./components/Header";
