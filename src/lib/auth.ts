@@ -21,9 +21,6 @@ export const authConfig: NextAuthOptions = {
         })
 
     ],
-    session: {
-        strategy: 'jwt',
-    },
 }
 
 export async function loginIsRequiredServer() {
